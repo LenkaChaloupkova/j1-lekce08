@@ -60,7 +60,12 @@ public class Svatky {
    */
   public Stream<String> muzi() {
     //TODO implementovat pomosí lambda výrazu
-    return null;
+    // je nejaka podminka -
+
+    return seznamSvatku()
+            .filter(s -> s.getGender() == Gender.MUZ)
+            .map(s -> s.getJmeno());
+            // .map(Svatek::getJmeno);
   }
 
   /**
@@ -70,7 +75,10 @@ public class Svatky {
    */
   public Stream<String> zeny() {
     //TODO implementovat pomocí method reference
-    return null;
+    return seznamSvatku()
+            //.filter(s -> s.getGender() == Gender.ZENA) // > toto je lambda výraz
+            .filter(s -> s.getGender() == Gender.ZENA)
+            .map (Svatek::getJmeno); // reference metoda
   }
 
   /**
@@ -80,7 +88,9 @@ public class Svatky {
    */
   public Stream<String> den(MonthDay den) {
     //TODO
-    return null;
+    return seznamSvatku()
+            .filter(s -> s.getDen() == den)
+    .map(Svatek::getJmeno);
   }
 
   /**
@@ -91,7 +101,10 @@ public class Svatky {
    */
   public Stream<String> zenskaJmenaVMesici(Month mesic) {
     //TODO
-    return null;
+    return seznamSvatku()
+            .filter(svatek -> svatek.getDen().getMonth() == mesic)
+            .filter(svatek -> svatek.getGender() == zenskaJmenaVMesici()) // neni dodelane
+            .map(Svatek::getJmeno);
   }
 
   /**
